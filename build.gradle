@@ -1,0 +1,44 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.2.3'
+	id 'io.spring.dependency-management' version '1.1.4'
+}
+
+group = 'com.abhinav'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	sourceCompatibility = '17'
+}
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+//	implementation 'org.springframework.data:spring-data-elasticsearch:4.4.12'
+
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.kafka:spring-kafka'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	implementation group: 'org.apache.commons', name: 'commons-csv', version: '1.10.0'
+	implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.7'
+	// https://mvnrepository.com/artifact/org.elasticsearch.client/elasticsearch-rest-client
+	implementation 'org.elasticsearch.client:elasticsearch-rest-client:7.17.7'
+
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
